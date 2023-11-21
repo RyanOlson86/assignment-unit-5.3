@@ -20,6 +20,15 @@ function showCollection(collection) {
   } //end for loop
 } // end showCollection function
 
+function findByArtist(collection, artist){
+  let results = [];
+  for (let album of collection) {
+    if(album.artist === artist){
+      results.push(album);
+    }
+  }
+  return results;
+}
 
 // Coding for testing addToCollection;
 console.log("Starting collection", myCollection);
@@ -37,6 +46,13 @@ console.log(myCollection);
 
 //Test for showCollection function
 showCollection(myCollection);
+
+// Test for findByArtist
+console.log('Test for findByArtist for Eric Church (expect array with 2 objects):', findByArtist(myCollection, 'Eric Church'));
+console.log('Test for artist not in collection (expect empty array):',findByArtist(myCollection, 'Tim'));
+
+
+
 
 
 // PLEASE DO NOT MODIFY THIS. Just leave it down here at the bottom. Think of it
