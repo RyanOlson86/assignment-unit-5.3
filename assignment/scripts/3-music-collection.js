@@ -4,17 +4,20 @@ let myCollection = [];
 
 function addToCollection( collection, title, artist, yearPublished){
   const newAddition = {title: title, artist: artist, yearPublished: yearPublished};
-  myCollection.push(newAddition);
+  collection.push(newAddition);
   console.log('New album added to collection: ', newAddition);
   return newAddition;
 }
 
 // Coding for testing addToCollection;
 console.log('Starting collection', myCollection);
+console.log(myCollection.length);
 addToCollection(myCollection, 'Chief', 'Eric Church', '2011');
 console.log('Collection after 1 add:', myCollection);
+console.log(myCollection.length);
 addToCollection(myCollection, 'Carolina', 'Eric Church', '2009');
 console.log('Collection after 1 add:', myCollection);
+console.log(myCollection.length);
 
 
 
