@@ -20,16 +20,29 @@ function showCollection(collection) {
   } //end for loop
 } // end showCollection function
 
-function findByArtist(collection, artist){
+function findByArtist(collection, artist) {
   let results = [];
   for (let album of collection) {
-    if(album.artist === artist){
+    if (album.artist === artist) {
       results.push(album);
     }
   }
   return results;
 }
 
+//Function for advanced search
+function search(collection, searchCriteria) {
+  let searchResults = [];
+  if (
+    typeof searchCriteria === "undefined" ||
+    searchCriteria === "" ||
+    searchCriteria.artist == "" ||
+    searchCriteria.year == ""
+  ) {
+    searchResults = collection;
+    return searchResults;
+  } // return input collection if no search object, object is empty or missing artist/year
+}
 // Coding for testing addToCollection;
 console.log("Starting collection", myCollection);
 console.log(addToCollection(myCollection, "Chief", "Eric Church", "2011"));
@@ -48,12 +61,22 @@ console.log(myCollection);
 showCollection(myCollection);
 
 // Test for findByArtist
-console.log('Test for findByArtist for Eric Church (expect array with 2 objects):', findByArtist(myCollection, 'Eric Church'));
-console.log('Test for artist not in collection (expect empty array):',findByArtist(myCollection, 'Tim'));
+console.log(
+  "Test for findByArtist for Eric Church (expect array with 2 objects):",
+  findByArtist(myCollection, "Eric Church")
+);
+console.log(
+  "Test for artist not in collection (expect empty array):",
+  findByArtist(myCollection, "Tim")
+);
 
-
-
-
+//Test for advanced search
+console.log("--- Test for search function ---");
+console.log("test missing object", search(myCollection));
+console.log("test empty object", search(myCollection, {}));
+console.log("test complete object", search(myCollection, { artist: "Eric Church", year: "2011" }));
+console.log("test missing artist", search(myCollection, { artist: "", year: "2011" }));
+console.log("test missing year", search(myCollection, { artist: "Eric Church", year: "" }));
 
 // PLEASE DO NOT MODIFY THIS. Just leave it down here at the bottom. Think of it
 // as a lil' chunk of friendly code that you don't need to understand right now.
