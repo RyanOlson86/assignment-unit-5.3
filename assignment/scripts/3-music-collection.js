@@ -5,21 +5,17 @@ let myCollection = [];
 function addToCollection( collection, title, artist, yearPublished){
   const newAddition = {title: title, artist: artist, yearPublished: yearPublished};
   collection.push(newAddition);
-  console.log('New album added to collection: ', newAddition);
   return newAddition;
 }
 
 // Coding for testing addToCollection;
 console.log('Starting collection', myCollection);
-console.log(myCollection.length);
-addToCollection(myCollection, 'Chief', 'Eric Church', '2011');
-console.log('Collection after 1 add:', myCollection);
-console.log(myCollection.length);
-addToCollection(myCollection, 'Carolina', 'Eric Church', '2009');
-console.log('Collection after 1 add:', myCollection);
-console.log(myCollection.length);
-
-
+console.log(addToCollection(myCollection, 'Chief', 'Eric Church', '2011'));
+console.log(addToCollection(myCollection, 'Carolina', 'Eric Church', '2009'));
+console.log(addToCollection(myCollection, 'Blacksheep', 'Yelawolf', '2021'));
+console.log(addToCollection(myCollection, 'Licensed to Ill', 'Beastie Boys', '1986'));
+console.log(addToCollection(myCollection, 'Americana', 'The Offspring', '1998'));
+console.log(addToCollection(myCollection, 'Sunset Man', 'James Otto', '2008'));
 
 
 
