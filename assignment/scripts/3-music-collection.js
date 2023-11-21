@@ -35,7 +35,7 @@ function search(collection, searchCriteria) {
   let searchResults = [];
   if (
     typeof searchCriteria === "undefined" ||
-    searchCriteria === "" ||
+    Object.keys(searchCriteria).length === 0 ||
     searchCriteria.artist == "" ||
     searchCriteria.year == ""
   ) {
