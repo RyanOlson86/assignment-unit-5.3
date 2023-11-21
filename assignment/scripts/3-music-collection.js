@@ -57,7 +57,7 @@ function search(collection, searchCriteria) {
       //artistSearch is an array of objects if artist is in collection, else it is empty
       if (artistSearch.length >0){
         return findByYear(artistSearch, searchCriteria.year);
-      }
+      } else return artistSearch;
   }
 }
 // Coding for testing addToCollection;
@@ -97,7 +97,7 @@ console.log("test missing year(expect full collection)", search(myCollection, { 
 console.log("test complete object (expect 1 result)", search(myCollection, { artist: "Eric Church", year: "2011" }));
 console.log("test for right artist wrong year(expect empty)", search(myCollection, { artist: "Eric Church", year: "1900" }));
 console.log("test for right artist wrong year(expect empty)", search(myCollection, { artist: "Eric Church", year: "1900" }));
-
+console.log("test no matching artist/year(expect empty)", search(myCollection, { artist: "Taylor Swift", year: "2000" }));
 
 // PLEASE DO NOT MODIFY THIS. Just leave it down here at the bottom. Think of it
 // as a lil' chunk of friendly code that you don't need to understand right now.
