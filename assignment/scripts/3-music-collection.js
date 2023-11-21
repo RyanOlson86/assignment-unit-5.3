@@ -30,18 +30,35 @@ function findByArtist(collection, artist) {
   return results;
 }
 
-//Function for advanced search
-function search(collection, searchCriteria) {
+function findByYear(collection, year) {
+  let results = [];
+  for (let album of collection) {
+    if (album.yearPublished === year) {
+      results.push(album);
+    }
+  }
+  return results;
+}
+
+//Function for Artist AND Year search
+function search(collection, searchCriteria) { 
   let searchResults = [];
-  if (
+  //checks if searchCriteria is empty, undefined or missing info - return full collection
+  if ( 
     typeof searchCriteria === "undefined" ||
     Object.keys(searchCriteria).length === 0 ||
     searchCriteria.artist == "" ||
     searchCriteria.year == ""
   ) {
     searchResults = collection;
-    return searchResults;
-  } // return input collection if no search object, object is empty or missing artist/year
+    return searchResults;// return input collection if no search object, object is empty or missing artist/year
+  } else {
+      let artistSearch = findByArtist(collection, searchCriteria.artist); 
+      //artistSearch is an array of objects if artist is in collection, else it is empty
+      if (artistSearch.length >0){
+        return findByYear(artistSearch, searchCriteria.year);
+      }
+  }
 }
 // Coding for testing addToCollection;
 console.log("Starting collection", myCollection);
@@ -70,13 +87,17 @@ console.log(
   findByArtist(myCollection, "Tim")
 );
 
+
 //Test for advanced search
 console.log("--- Test for search function ---");
-console.log("test missing object", search(myCollection));
-console.log("test empty object", search(myCollection, {}));
-console.log("test complete object", search(myCollection, { artist: "Eric Church", year: "2011" }));
-console.log("test missing artist", search(myCollection, { artist: "", year: "2011" }));
-console.log("test missing year", search(myCollection, { artist: "Eric Church", year: "" }));
+console.log("test missing object(expect full collection)", search(myCollection));
+console.log("test empty object(expect full collection)", search(myCollection, {}));
+console.log("test missing artist(expect full collection)", search(myCollection, { artist: "", year: "2011" }));
+console.log("test missing year(expect full collection)", search(myCollection, { artist: "Eric Church", year: "" }));
+console.log("test complete object (expect 1 result)", search(myCollection, { artist: "Eric Church", year: "2011" }));
+console.log("test for right artist wrong year(expect empty)", search(myCollection, { artist: "Eric Church", year: "1900" }));
+console.log("test for right artist wrong year(expect empty)", search(myCollection, { artist: "Eric Church", year: "1900" }));
+
 
 // PLEASE DO NOT MODIFY THIS. Just leave it down here at the bottom. Think of it
 // as a lil' chunk of friendly code that you don't need to understand right now.
