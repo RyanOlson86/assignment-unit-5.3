@@ -14,9 +14,7 @@ function addToCollection(collection, title, artist, yearPublished) {
 
 function showCollection(collection) {
   for (let i = 0; i < collection.length; i++) {
-    console.log(
-      `${collection[i].title} by ${collection[i].artist}, published in ${collection[i].yearPublished}`
-    );
+    console.log(`${collection[i].title} by ${collection[i].artist}, published in ${collection[i].yearPublished}`);
   } //end for loop
 } // end showCollection function
 
@@ -41,23 +39,23 @@ function findByYear(collection, year) {
 }
 
 //Function for Artist AND Year search
-function search(collection, searchCriteria) { 
+function search(collection, searchCriteria) {
   let searchResults = [];
   //checks if searchCriteria is empty, undefined or missing info - return full collection
-  if ( 
+  if (
     typeof searchCriteria === "undefined" ||
     Object.keys(searchCriteria).length === 0 ||
     searchCriteria.artist == "" ||
     searchCriteria.year == ""
   ) {
     searchResults = collection;
-    return searchResults;// return input collection if no search object, object is empty or missing artist/year
+    return searchResults; // return input collection if no search object, object is empty or missing artist/year
   } else {
-      let artistSearch = findByArtist(collection, searchCriteria.artist); 
-      //artistSearch is an array of objects if artist is in collection, else it is empty
-      if (artistSearch.length >0){
-        return findByYear(artistSearch, searchCriteria.year);
-      } else return artistSearch;
+    let artistSearch = findByArtist(collection, searchCriteria.artist);
+    //artistSearch is an array of objects if artist is in collection, else it is empty
+    if (artistSearch.length > 0) {
+      return findByYear(artistSearch, searchCriteria.year);
+    } else return artistSearch;
   }
 }
 // Coding for testing addToCollection;
@@ -65,12 +63,8 @@ console.log("Starting collection", myCollection);
 console.log(addToCollection(myCollection, "Chief", "Eric Church", "2011"));
 console.log(addToCollection(myCollection, "Carolina", "Eric Church", "2009"));
 console.log(addToCollection(myCollection, "Blacksheep", "Yelawolf", "2021"));
-console.log(
-  addToCollection(myCollection, "Licensed to Ill", "Beastie Boys", "1986")
-);
-console.log(
-  addToCollection(myCollection, "Americana", "The Offspring", "1998")
-);
+console.log(addToCollection(myCollection, "Licensed to Ill", "Beastie Boys", "1986"));
+console.log(addToCollection(myCollection, "Americana", "The Offspring", "1998"));
 console.log(addToCollection(myCollection, "Sunset Man", "James Otto", "2008"));
 console.log(myCollection);
 
@@ -78,15 +72,8 @@ console.log(myCollection);
 showCollection(myCollection);
 
 // Test for findByArtist
-console.log(
-  "Test for findByArtist for Eric Church (expect array with 2 objects):",
-  findByArtist(myCollection, "Eric Church")
-);
-console.log(
-  "Test for artist not in collection (expect empty array):",
-  findByArtist(myCollection, "Tim")
-);
-
+console.log("Test for findByArtist for Eric Church (expect array with 2 objects):", findByArtist(myCollection, "Eric Church"));
+console.log("Test for artist not in collection (expect empty array):", findByArtist(myCollection, "Tim"));
 
 //Test for advanced search
 console.log("--- Test for search function ---");
@@ -104,14 +91,10 @@ console.log("test no matching artist/year(expect empty)", search(myCollection, {
 // (It's used for automated testing.)
 try {
   module.exports = {
-    myCollection:
-      typeof myCollection !== "undefined" ? myCollection : undefined,
-    addToCollection:
-      typeof addToCollection !== "undefined" ? addToCollection : undefined,
-    showCollection:
-      typeof showCollection !== "undefined" ? showCollection : undefined,
-    findByArtist:
-      typeof findByArtist !== "undefined" ? findByArtist : undefined,
+    myCollection: typeof myCollection !== "undefined" ? myCollection : undefined,
+    addToCollection: typeof addToCollection !== "undefined" ? addToCollection : undefined,
+    showCollection: typeof showCollection !== "undefined" ? showCollection : undefined,
+    findByArtist: typeof findByArtist !== "undefined" ? findByArtist : undefined,
     search: typeof search !== "undefined" ? search : undefined,
   };
 } catch (e) {
