@@ -45,7 +45,7 @@ function search(collection, searchCriteria) {
   //checks if searchCriteria is empty, undefined or missing info - return full collection
   if (
     typeof searchCriteria === "undefined" ||
-    Object.keys(searchCriteria).length === 0 ||
+    Object.values(searchCriteria).length === 0 ||
     Object.values(searchCriteria)[0] == "" ||
     Object.values(searchCriteria)[1] == ""
   ) {
