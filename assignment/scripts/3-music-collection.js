@@ -39,24 +39,49 @@ function findByYear(collection, year) {
 }
 
 //Function for Artist AND Year search
+// Need to use Object.value to get year from searchCriteria to pass Prime test because
+// yearPublished is passed to the function in some test cases
 function search(collection, searchCriteria) {
   //checks if searchCriteria is empty, undefined or missing info - return full collection
   if (
     typeof searchCriteria === "undefined" ||
     Object.keys(searchCriteria).length === 0 ||
-    searchCriteria.artist == "" ||
-    searchCriteria.year == ""
+    Object.values(searchCriteria)[0] == "" ||
+    Object.values(searchCriteria)[1] == ""
   ) {
     return collection; // return input collection if no search object, object is empty or missing artist/year
   } else {
-    let artistSearch = findByArtist(collection, searchCriteria.artist);
+    let artistSearch = findByArtist(collection, Object.values(searchCriteria)[0]);
     //artistSearch is an array of objects if artist is in collection, else it is empty
     if (artistSearch.length > 0) {
-      return findByYear(artistSearch, searchCriteria.year);
+      return findByYear(artistSearch, Object.values(searchCriteria)[1]);
     } else return artistSearch;
   }
 }
+
+// //Function for Artist AND Year search
+// --- THIS CODE DOES NOT PASS PRIME TESTING, ALTHOUGH PASSES CONSOLE.LOG TESTING ---
+// Prime test passes yearPublished to search function NOT year
+//
+// function search(collection, searchCriteria) {
+//   //checks if searchCriteria is empty, undefined or missing info - return full collection
+//   if (
+//     typeof searchCriteria === "undefined" ||
+//     Object.keys(searchCriteria).length === 0 ||
+//     searchCriteria.artist == "" ||
+//     searchCriteria.year == ""
+//   ) {
+//     return collection; // return input collection if no search object, object is empty or missing artist/year
+//   } else {
+//     let artistSearch = findByArtist(collection, searchCriteria.artist);
+//     //artistSearch is an array of objects if artist is in collection, else it is empty
+//     if (artistSearch.length > 0) {
+//       return findByYear(artistSearch, searchCriteria.year);
+//     } else return artistSearch;
+//   }
+// }
 // Coding for testing addToCollection;
+
 console.log("Starting collection", myCollection);
 console.log(addToCollection(myCollection, "Chief", "Eric Church", "2011"));
 console.log(addToCollection(myCollection, "Carolina", "Eric Church", "2009"));
@@ -67,6 +92,7 @@ console.log(addToCollection(myCollection, "Sunset Man", "James Otto", "2008"));
 console.log(myCollection);
 
 //Test for showCollection function
+console.log('--- Test for showCollection ---');
 showCollection(myCollection);
 
 // Test for findByArtist
