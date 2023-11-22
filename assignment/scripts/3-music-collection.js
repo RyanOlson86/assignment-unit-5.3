@@ -40,7 +40,6 @@ function findByYear(collection, year) {
 
 //Function for Artist AND Year search
 function search(collection, searchCriteria) {
-  let searchResults = [];
   //checks if searchCriteria is empty, undefined or missing info - return full collection
   if (
     typeof searchCriteria === "undefined" ||
@@ -48,8 +47,7 @@ function search(collection, searchCriteria) {
     searchCriteria.artist == "" ||
     searchCriteria.year == ""
   ) {
-    searchResults = collection;
-    return searchResults; // return input collection if no search object, object is empty or missing artist/year
+    return collection; // return input collection if no search object, object is empty or missing artist/year
   } else {
     let artistSearch = findByArtist(collection, searchCriteria.artist);
     //artistSearch is an array of objects if artist is in collection, else it is empty
