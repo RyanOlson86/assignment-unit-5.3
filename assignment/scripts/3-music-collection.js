@@ -1,23 +1,29 @@
 console.log("***** Music Collection *****");
 // Safe Zone -- Write code below this line
 let myCollection = [];
+console.log('Starting collection:', myCollection);
 
+// Function to collect an existing array (collection), and 3 strings (title, artist, yearPublished)
 function addToCollection(collection, title, artist, yearPublished) {
+  // Create newAddition object with title, artist and yearPublished
   const newAddition = {
     title: title,
     artist: artist,
     yearPublished: yearPublished,
-  }; // create object with title, artist, and yearPublished
+  };
   collection.push(newAddition); // push object to collection
-  return newAddition; // output object to function call
+  return newAddition; // return object added to collection
 } // end addToCollection function
 
+
+// Loop to show all objects in collection as a string
 function showCollection(collection) {
   for (let i = 0; i < collection.length; i++) {
     console.log(`${collection[i].title} by ${collection[i].artist}, published in ${collection[i].yearPublished}`);
-  } //end for loop
+  } 
 } // end showCollection function
 
+// Function to search collection by artist(string)
 function findByArtist(collection, artist) {
   let results = [];
   for (let album of collection) {
@@ -28,6 +34,7 @@ function findByArtist(collection, artist) {
   return results;
 }
 
+// Function to search collection by year(string)
 function findByYear(collection, year) {
   let results = [];
   for (let album of collection) {
@@ -80,23 +87,24 @@ function search(collection, searchCriteria) {
 //     } else return artistSearch;
 //   }
 // }
-// Coding for testing addToCollection;
 
-console.log("Starting collection", myCollection);
+// Coding for testing addToCollection;
+console.log('--- Start adding 6 albums to collection ---');
 console.log(addToCollection(myCollection, "Chief", "Eric Church", "2011"));
 console.log(addToCollection(myCollection, "Carolina", "Eric Church", "2009"));
 console.log(addToCollection(myCollection, "Blacksheep", "Yelawolf", "2021"));
 console.log(addToCollection(myCollection, "Licensed to Ill", "Beastie Boys", "1986"));
 console.log(addToCollection(myCollection, "Americana", "The Offspring", "1998"));
 console.log(addToCollection(myCollection, "Sunset Man", "James Otto", "2008"));
-console.log(myCollection);
+console.log('Collection after adding albums:', myCollection);
 
 //Test for showCollection function
 console.log('--- Test for showCollection ---');
 showCollection(myCollection);
 
 // Test for findByArtist
-console.log("Test for findByArtist for Eric Church (expect array with 2 objects):", findByArtist(myCollection, "Eric Church"));
+console.log('--- Test for findByArtist ---');
+console.log("Test for Eric Church (expect array with 2 objects):", findByArtist(myCollection, "Eric Church"));
 console.log("Test for artist not in collection (expect empty array):", findByArtist(myCollection, "Tim"));
 
 //Test for advanced search
@@ -105,9 +113,9 @@ console.log("test missing object(expect full collection)", search(myCollection))
 console.log("test empty object(expect full collection)", search(myCollection, {}));
 console.log("test missing artist(expect full collection)", search(myCollection, { artist: "", year: "2011" }));
 console.log("test missing year(expect full collection)", search(myCollection, { artist: "Eric Church", year: "" }));
-console.log("test complete object (expect 1 result)", search(myCollection, { artist: "Eric Church", year: "2011" }));
-console.log("test for right artist wrong year(expect empty)", search(myCollection, { artist: "Eric Church", year: "1900" }));
-console.log("test for right artist wrong year(expect empty)", search(myCollection, { artist: "Eric Church", year: "1900" }));
+console.log("test Eric Church and 2011 (expect 1 result)", search(myCollection, { artist: "Eric Church", year: "2011" }));
+console.log("test for Eric Church(right artist) and 1900(wrong year) (expect empty)", search(myCollection, { artist: "Eric Church", year: "1900" }));
+console.log("test for Taylor Swift(wrong artist) and 2011(right year) (expect empty)", search(myCollection, { artist: "Eric Church", year: "1900" }));
 console.log("test no matching artist/year(expect empty)", search(myCollection, { artist: "Taylor Swift", year: "2000" }));
 
 // PLEASE DO NOT MODIFY THIS. Just leave it down here at the bottom. Think of it
