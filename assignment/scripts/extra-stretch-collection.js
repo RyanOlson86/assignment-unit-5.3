@@ -45,7 +45,8 @@ function addToCollection(collection, title, artist, yearPublished, tracks) {
 // Loop to show all objects in collection as a string
 function showCollection(collection) {
   for (let i = 0; i < collection.length; i++) {
-    console.log(`${collection[i].title} by ${collection[i].artist}, published in ${collection[i].yearPublished}`);
+    console.log(`${collection[i].title} by ${collection[i].artist}, published in ${collection[i].yearPublished} \n
+    \t ${i+1}. ${collection[i].tracks[i].name}: ${collection[i].tracks[i].duration}`);
   } 
 } // end showCollection function
 
